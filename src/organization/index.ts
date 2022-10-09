@@ -1,5 +1,5 @@
 import { Base } from "../base";
-import { Organization, PlatformProfile, ProviderProfile, Wallet } from "./types";
+import { InvitedMembers, NetworkDetails, Organization, PlatformProfile, ProviderProfile, TokenDetails, Wallet } from "./types";
 import { Users } from "./types";
 
 function serchUserById(P: Organization, idf: string): Users|string{
@@ -21,8 +21,15 @@ function searchProviderProfileById(P: Users, idpP: string): ProviderProfile|stri
     }
     return "Invalid Profile Id";
 }
-
-
+function searchInvitedMemberById(P: Organization,id:string): InvitedMembers| string{
+    let value: InvitedMembers[] = P.invitedMembers
+    for(let i: number = 0; i< value.length; i++){
+        if(value[i]._id == id){
+            return value[i];
+        }
+    }
+    return "Invited Id Not found"
+}
 
 export class GetOrganization extends Base{
     getOrganizationDetails(id: string): Promise<Organization>{
@@ -59,6 +66,24 @@ export class GetOrganization extends Base{
     getWalletDetails(id: string): Promise<Wallet>{
         return this.invoke(`/v1/organization/${id}`)
         .then((p:Organization)=> p.wallet)
+    }
+    getWalletNetworkDetails(id: string): Promise<NetworkDetails>{
+        return this.invoke(`/v1/organization/${id}`)
+        .then((p:Organization)=> p.wallet)
+        .then((p:Wallet)=> p.networkDetails)
+    }
+    getWalletTokenDetails(id: string): Promise<TokenDetails>{
+        return this.invoke(`/v1/organization/${id}`)
+        .then((p:Organization)=> p.wallet)
+        .then((p:Wallet)=> p.tokenDetails)
+    }
+    getAllInvitedMembers(id:string): Promise<InvitedMembers[]>{
+        return this.invoke(`/v1/organization/${id}`)
+        .then((p:Organization)=> p.invitedMembers)
+    }
+    getInvitedMembersById(id:string, invitedId): Promise<InvitedMembers|string>{
+        return this.invoke(`/v1/organization/${id}`)
+        .then((p:Organization)=> searchInvitedMemberById(p,invitedId))
     }
     // getProiverOfUserById(id: string, idI)
 }

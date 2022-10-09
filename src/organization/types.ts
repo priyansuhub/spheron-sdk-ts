@@ -91,3 +91,6 @@ export declare type PlatformProfile = {
 export declare type Provider={
     name: string;
 }
+export declare type ProjectCount={
+    count: number
+}
