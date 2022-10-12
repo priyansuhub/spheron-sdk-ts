@@ -1,16 +1,5 @@
-export declare type Coupons = {
-    coupons: Coupon[];
-}
+import { Base } from "../base";
 
-export declare type Coupon = {
-    id: string;
-    couponName: string;
-    activationCode: string;
-    activatedAt: string;
-    expiresAt: string;
-    state: string;
-    registeredAt: string;
-    totalDays: number;
-    daysRemaning: number;
-    daysUntilActivation: number;
+export class CouponsClass extends Base{
+
 }

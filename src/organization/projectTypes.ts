@@ -62,8 +62,6 @@ export declare type ConfigurationOfLatestDeployment ={
     framework: string;
     nodeVersion: string;
 }
-
-
 export declare type Screenshot ={
     id: string;
     fee: string;
@@ -100,4 +98,18 @@ export declare type Configuration={
     publishDir: string;
     framework: string;
     nodeVersion: string;
+}
+export declare type ProjectDeploymentCount={
+    total: number;
+    successful: number;
+    failed: number;
+    pending: number;
+}
+
+export declare type StateRequest={
+    state:string;
+}
+
+export declare type StateResponse={
+    message:string;
 }

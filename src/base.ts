@@ -1,6 +1,6 @@
 
 import fetch from 'isomorphic-unfetch';
-
+import axios from 'axios';
 
 export abstract class Base {
     private apiKey: string;
@@ -31,4 +31,83 @@ export abstract class Base {
             }
         })
     }
+
+    protected async patchData<T>(endpoint: string, value: any):Promise<T>{
+        try{
+            const {data} = await axios.patch<T>(
+                `${this.baseUrl}${endpoint}`,
+                value,
+                {
+                    
+                    headers: {
+                        "accept":"application/json",
+                        "charset": "utf-8",
+                        "authorization": this.apiKey
+                    }
+                }
+            )
+            return data;
+        }catch(error){
+            return error.message
+        }
+    }
+    protected async putData<T>(endpoint: string, value: any):Promise<T>{
+        try{
+            const {data} = await axios.put<T>(
+                `${this.baseUrl}${endpoint}`,
+                value,
+                {
+                    
+                    headers: {
+                        "accept":"application/json",
+                        "charset": "utf-8",
+                        "authorization": this.apiKey
+                    }
+                }
+            )
+            return data;
+        }catch(error){
+            return error.message
+        }
+    }               
+    protected async postData<T>(endpoint: string, value: any):Promise<T>{
+        try{
+            const {data} = await axios.post<T>(
+                `${this.baseUrl}${endpoint}`,
+                value,
+                {
+                    
+                    headers: {
+                        "accept":"application/json",
+                        "charset": "utf-8",
+                        "authorization": this.apiKey
+                    }
+                }
+            )
+            return data;
+        }catch(error){
+            return error.message
+        }
+    }
+    protected async deleteData<T>(endpoint: string):Promise<T>{
+        try{
+            const {data} = await axios.delete<T>(
+                `${this.baseUrl}${endpoint}`,
+                {
+                    
+                    headers: {
+                        "accept":"application/json",
+                        "charset": "utf-8",
+                        "authorization": this.apiKey
+                    }
+                }
+            )
+            return data;
+        }catch(error){
+            return error.message
+        }
+    }
+
+    protected async 
+
 }
