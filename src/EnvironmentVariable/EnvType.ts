@@ -1,6 +1,7 @@
 export declare type PostEnvironmentRequest ={
      environmentVariables: EnvVariable[];
 }
+
 export declare type PutEnvironmentResponse={
     updated: EnvVariable[];
 }

@@ -1,4 +1,4 @@
-import { Configuration } from "../organization/projectTypes";
+import { Configuration } from "../Organization/projectTypes";
 import { Base } from "../base";
 
 export class ConfigurationProject extends Base{

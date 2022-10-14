@@ -1,4 +1,4 @@
-import { StateRequest, StateResponse } from "../organization/projectTypes";
+import { StateRequest, StateResponse } from "../Organization/projectTypes";
 import { Base } from "../base";
 
 

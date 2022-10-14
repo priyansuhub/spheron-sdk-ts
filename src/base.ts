@@ -107,7 +107,41 @@ export abstract class Base {
             return error.message
         }
     }
-
-    protected async 
-
+    protected async getData<T>(endpoint: string): Promise<T>{
+        try{
+            const {data} = await axios.get<T>(
+                `${this.baseUrl}${endpoint}`,
+                {
+                    
+                    headers: {
+                        "accept":"application/json",
+                        "charset": "utf-8",
+                        "authorization": this.apiKey
+                    }
+                }
+            )
+            return data;
+        }catch(error){
+            return error.message
+        }
+    }
+    protected async activateDeactivate<T>(endpoint: string): Promise<T>{
+        try{
+            const {data} = await axios.patch<T>(
+                `${this.baseUrl}${endpoint}`,
+                {
+                    
+                    headers: {
+                        "accept":"application/json",
+                        "charset": "utf-8",
+                        "authorization": this.apiKey
+                    }
+                }
+            )
+            return data;
+        }catch(error){
+            return error.message
+        }
+    }
+   
 }

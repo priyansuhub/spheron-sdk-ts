@@ -1,5 +1,5 @@
 import { Base } from "./base";
-import { GetOrganization } from "./organization";
+import { GetOrganization } from "./Organization";
 import { ConfigurationProject } from "./Project/configuration";
 import { DeploymentInfo } from "./Project/deployment";
 import { ProjectDetails } from "./Project/projectInfo";

@@ -1,4 +1,4 @@
-import { Configuration, DeploymentEnvironments, Domains, Projects } from "../organization/projectTypes";
+import { Configuration, DeploymentEnvironments, Domains, Projects } from "../Organization/projectTypes";
 import { Base } from "../base";
 
 //https://www.youtube.com/watch?v=b73vzZzsJo4

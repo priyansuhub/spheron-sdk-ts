@@ -1,4 +1,4 @@
-import { LatestDeployment, ProjectDeploymentCount } from "../organization/projectTypes";
+import { LatestDeployment, ProjectDeploymentCount } from "../Organization/projectTypes";
 import { Base } from "../base";
 import axios from 'axios';
 
