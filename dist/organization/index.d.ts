@@ -1,6 +1,5 @@
-import { Base } from "../base";
-import { InvitedMembers, NetworkDetails, Organization, PlatformProfile, ProviderProfile, TokenDetails, Wallet } from "./types";
-import { Users } from "./types";
+import { Base } from '../base';
+import { InvitedMembers, NetworkDetails, Organization, PlatformProfile, ProviderProfile, TokenDetails, Wallet, Users } from './types';
 export declare class GetOrganization extends Base {
     getOrganizationDetails(id: string): Promise<Organization>;
     getOrganizationUsers(id: string): Promise<Users[]>;
@@ -14,4 +13,7 @@ export declare class GetOrganization extends Base {
     getWalletTokenDetails(id: string): Promise<TokenDetails>;
     getAllInvitedMembers(id: string): Promise<InvitedMembers[]>;
     getInvitedMembersById(id: string, invitedId: any): Promise<InvitedMembers | string>;
+}
+export declare class GetProject extends Base {
+    getProjectCount(id: string): Promise<number>;
 }

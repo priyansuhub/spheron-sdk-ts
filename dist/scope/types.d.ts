@@ -1,9 +1,9 @@
-export declare type Post = {
+export declare interface Post {
     id: number;
     title: string;
     body: string;
     userId: number;
-};
-export declare type Auth = {
+}
+export declare interface Auth {
     scope: string[];
-};
+}

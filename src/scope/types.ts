@@ -1,9 +1,9 @@
-export declare type Post ={
-    id: number;
-    title: string;
-    body: string;
-    userId: number;
+export declare interface Post {
+  id: number
+  title: string
+  body: string
+  userId: number
 }
-export declare type Auth ={
-    scope: string[]
+export declare interface Auth {
+  scope: string[]
 }

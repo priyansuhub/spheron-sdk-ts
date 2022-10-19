@@ -1,10 +1,11 @@
-import { Base } from "./base";
-import { GetOrganization } from "./organization";
-import { ConfigurationProject } from "./Project/configuration";
-import { DeploymentInfo } from "./Project/deployment";
-import { ProjectDetails } from "./Project/projectInfo";
-import { State } from "./Project/state";
-import { Scope } from "./scope";
+import { Domain } from './domains';
+import { Base } from './base';
+import { CouponsClass } from './coupons';
+import { Deployment } from './deployment';
+import { DeploymentEnvironment } from './deployment-environment';
+import { GetOrganization, GetProject } from './organization';
+import { ConfigurationProject, DeploymentInfo, ProjectDetails, State } from './project';
+import { Scope } from './scope';
 declare class Spheron extends Base {
 }
 interface Spheron extends Scope {
@@ -18,5 +19,15 @@ interface Spheron extends DeploymentInfo {
 interface Spheron extends State {
 }
 interface Spheron extends ConfigurationProject {
+}
+interface Spheron extends GetProject {
+}
+interface Spheron extends CouponsClass {
+}
+interface Spheron extends Deployment {
+}
+interface Spheron extends DeploymentEnvironment {
+}
+interface Spheron extends Domain {
 }
 export default Spheron;
