@@ -1,7 +1,7 @@
 
 import fetch from 'isomorphic-unfetch'
 import axios from 'axios'
-
+// test
 export abstract class Base {
   private readonly apiKey: string
   private readonly baseUrl: string
