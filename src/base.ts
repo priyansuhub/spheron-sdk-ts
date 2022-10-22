@@ -10,7 +10,7 @@ export abstract class Base {
     this.baseUrl = 'https://api-v2.spheron.network'
   }
 
-  public async invoke<T>(endpoint: string, options?: RequestInit): Promise<T> {
+  public async invoke<T>(endpoint: string): Promise<T> {
     const url = `${this.baseUrl}${endpoint}`
 
     const headers = {
@@ -20,7 +20,7 @@ export abstract class Base {
     }
 
     const config = {
-      ...options,
+
       headers
     }
     return await fetch(url, config).then(async response => {
@@ -92,7 +92,7 @@ export abstract class Base {
     }
   }
 
-  protected async deleteData<T>(endpoint: string): Promise<T> {
+  protected async deleteDataParam<T>(endpoint: string, value: string): Promise<T> {
     try {
       const { data } = await axios.delete<T>(
                 `${this.baseUrl}${endpoint}`,
@@ -102,7 +102,31 @@ export abstract class Base {
                     accept: 'application/json',
                     charset: 'utf-8',
                     authorization: this.apiKey
+                  },
+                  data: {
+                    userId: value
                   }
+                }
+      )
+      return data
+    } catch (error) {
+      return error.message
+    }
+  }
+
+  protected async deleteData<T>(endpoint: string): Promise<T> {
+    try {
+      const { data } = await axios.delete<T>(
+                `${this.baseUrl}${endpoint}`,
+
+                {
+
+                  headers: {
+                    accept: 'application/json',
+                    charset: 'utf-8',
+                    authorization: this.apiKey
+                  }
+
                 }
       )
       return data

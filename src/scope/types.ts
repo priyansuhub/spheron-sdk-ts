@@ -1,9 +1,16 @@
-export declare interface Post {
-  id: number
-  title: string
-  body: string
-  userId: number
+export declare interface ScopeType {
+  user: User
+  organization: Organization[]
 }
-export declare interface Auth {
-  scope: string[]
+
+export declare interface User {
+  id: string
+  username: string
+  name: string
+  email: string
+}
+export declare interface Organization {
+  id: string
+  name: string
+  username: string
 }

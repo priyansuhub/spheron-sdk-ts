@@ -3,6 +3,12 @@ import { Base } from '../base'
 import { DomainDelete, DomainsRequest, DomainsResponse, UpdateDomainsRequest, VerifyDomainType } from './types'
 
 export class Domain extends Base {
+  /**
+   * Add a new domain for the project.
+   @param {string}id: Project Id
+   @param {DomainsRequest}obj: Domain Request Data object input
+   @returns {DomainsResponse}:Added domain.
+  */
   async addDomainByProjectId (id: string, obj: DomainsRequest): Promise<DomainsResponse> {
     return await this.postData(`/v1/project/${id}/domains`, obj)
   }

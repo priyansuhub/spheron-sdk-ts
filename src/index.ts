@@ -3,12 +3,13 @@ import { Base } from './base'
 import { CouponsClass } from './coupons'
 import { Deployment } from './deployment'
 import { DeploymentEnvironment } from './deployment-environment'
-import { GetOrganization, GetProject } from './organization'
+import { GetOrganization, GetProject, OrganizationUpdate } from './organization'
 import { ConfigurationProject, DeploymentInfo, ProjectDetails, State } from './project'
 // import { ProjectDetails } from './project/projectInfo'
 // import { State } from './project/state'
 import { Scope } from './scope'
 import { applyMixins } from './utils'
+import { InviteClass } from './invites'
 
 class Spheron extends Base {}
 interface Spheron extends Scope {}
@@ -22,7 +23,9 @@ interface Spheron extends CouponsClass {}
 interface Spheron extends Deployment {}
 interface Spheron extends DeploymentEnvironment {}
 interface Spheron extends Domain {}
+interface Spheron extends OrganizationUpdate {}
+interface Spheron extends InviteClass {}
 
-applyMixins(Spheron, [Scope, GetOrganization, ProjectDetails, DeploymentInfo, State, ConfigurationProject, GetProject, CouponsClass, Deployment, DeploymentEnvironment, Domain])
+applyMixins(Spheron, [Scope, GetOrganization, ProjectDetails, DeploymentInfo, State, ConfigurationProject, GetProject, CouponsClass, Deployment, DeploymentEnvironment, Domain, OrganizationUpdate, InviteClass])
 
 export default Spheron

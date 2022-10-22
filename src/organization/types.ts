@@ -235,3 +235,7 @@ export declare interface ExceededEnvironmentsForProjects {
   amount: number
   project: string
 }
+export declare interface DeleteResponse {
+  error: boolean
+  message: string
+}
