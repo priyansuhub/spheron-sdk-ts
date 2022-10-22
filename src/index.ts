@@ -10,7 +10,7 @@ import { ConfigurationProject, DeploymentInfo, ProjectDetails, State } from './p
 import { Scope } from './scope'
 import { applyMixins } from './utils'
 import { InviteClass } from './invites'
-
+// Combining all the classes
 class Spheron extends Base {}
 interface Spheron extends Scope {}
 interface Spheron extends GetOrganization {}

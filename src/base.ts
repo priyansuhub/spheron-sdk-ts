@@ -2,6 +2,7 @@
 import fetch from 'isomorphic-unfetch'
 import axios from 'axios'
 // test
+// HTTP REQUEST HUB
 export abstract class Base {
   private readonly apiKey: string
   private readonly baseUrl: string
@@ -174,6 +175,25 @@ export abstract class Base {
   }
 
   protected async postDataEmpty<T>(endpoint: string): Promise<T> {
+    try {
+      const { data } = await axios.post<T>(
+                `${this.baseUrl}${endpoint}`,
+                {
+
+                  headers: {
+                    accept: 'application/json',
+                    charset: 'utf-8',
+                    authorization: this.apiKey
+                  }
+                }
+      )
+      return data
+    } catch (error) {
+      return error.message
+    }
+  }
+
+  protected async getDataEmpty<T>(endpoint: string): Promise<T> {
     try {
       const { data } = await axios.post<T>(
                 `${this.baseUrl}${endpoint}`,
