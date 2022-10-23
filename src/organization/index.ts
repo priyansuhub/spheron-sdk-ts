@@ -1,5 +1,5 @@
 import { Base } from '../base'
-import { InvitedMembers, NetworkDetails, Organization, PlatformProfile, ProviderProfile, TokenDetails, Wallet, Users, ProjectCount, Profile, DeleteResponse, Overdue } from './types'
+import { InvitedMembers, NetworkDetails, Organization, PlatformProfile, ProviderProfile, TokenDetails, Wallet, Users, ProjectCount, Profile, DeleteResponse, Overdue, Project } from './types'
 
 function serchUserById (P: Organization, idf: string): Users | string {
   const value: Users[] = P.users
@@ -164,6 +164,19 @@ export class GetOrganization extends Base {
   }
 }
 export class GetProject extends Base {
+  /**
+  * @param id : Organization Id
+  * @returns {Project} : Returns the projects of organization. Supports pagination and filtering by project state.
+  */
+
+  async getProjectOrg (id: string): Promise<Project> {
+    return await this.getData(`/v1/organization/${id}/projects`)
+  }
+
+  /**
+  * @param id : Organization Id
+  * @returns {number} : Returns the number of projects of organization.
+  */
   async getProjectCount (id: string): Promise<number> {
     return await this.getData(`/v1/organization/${id}/projects/count`)
       .then((p: ProjectCount) => p.count)
@@ -184,10 +197,11 @@ export class OrganizationUpdate extends Base {
   */
 
   async updateOrganizationProfileParams (id: string, name: string, username: string, image: string): Promise<boolean> {
-    let data: Profile
-    data.name = name
-    data.username = username
-    data.image = image
+    const data: Profile = {
+      name,
+      username,
+      image
+    }
     return await this.putData(`/v1/organization/${id}`, data)
   }
   /**

@@ -18,7 +18,9 @@ export declare interface InvitedMembers {
   createdAt: string
   updatedAt: string
 }
-
+export declare interface Project {
+  projects: Projects[]
+}
 export declare interface Wallet {
   id: string
   address: string

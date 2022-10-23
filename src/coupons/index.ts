@@ -8,6 +8,6 @@ export class CouponsClass extends Base {
   * @returns {Coupons} : Get request coupon details
   */
   async getCouponDetails (id: string): Promise<Coupons> {
-    return await this.getData(`/v1/organization/${id}`)
+    return await this.getData(`/v1/organization/${id}/coupons`)
   }
 }

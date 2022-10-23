@@ -81,8 +81,18 @@ export declare interface Authorize {
     deploymentId: string;
     projectId: string;
 }
+export declare interface Redeploy {
+    message: string;
+    success: boolean;
+    topic: string;
+    deploymentId: string;
+    projectId: string;
+}
 export declare interface CancelDeployment {
     message: string;
     canceled: boolean;
     killing: boolean;
+}
+export declare interface SuggestedFramework {
+    suggestedFramework: string;
 }

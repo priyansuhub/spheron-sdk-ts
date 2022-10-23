@@ -18,6 +18,9 @@ export declare interface InvitedMembers {
     createdAt: string;
     updatedAt: string;
 }
+export declare interface Project {
+    projects: Projects[];
+}
 export declare interface Wallet {
     id: string;
     address: string;
@@ -221,4 +224,8 @@ export declare interface OverdueResponse {
 export declare interface ExceededEnvironmentsForProjects {
     amount: number;
     project: string;
+}
+export declare interface DeleteResponse {
+    error: boolean;
+    message: string;
 }

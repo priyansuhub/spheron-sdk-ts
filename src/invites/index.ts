@@ -20,8 +20,9 @@ export class InviteClass extends Base {
   */
 
   async inviteMembers (id: string, inviteEmail: string): Promise<InviteResponse> {
-    let data: InviteRequest
-    data.userEmail = inviteEmail
+    const data: InviteRequest = {
+      userEmail: inviteEmail
+    }
     return await this.postData(`/v1/organization/${id}/invites`, data)
   }
 

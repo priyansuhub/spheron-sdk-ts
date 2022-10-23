@@ -3,9 +3,10 @@ import { Base } from './base';
 import { CouponsClass } from './coupons';
 import { Deployment } from './deployment';
 import { DeploymentEnvironment } from './deployment-environment';
-import { GetOrganization, GetProject } from './organization';
+import { GetOrganization, GetProject, OrganizationUpdate } from './organization';
 import { ConfigurationProject, DeploymentInfo, ProjectDetails, State } from './project';
 import { Scope } from './scope';
+import { InviteClass } from './invites';
 declare class Spheron extends Base {
 }
 interface Spheron extends Scope {
@@ -29,5 +30,9 @@ interface Spheron extends Deployment {
 interface Spheron extends DeploymentEnvironment {
 }
 interface Spheron extends Domain {
+}
+interface Spheron extends OrganizationUpdate {
+}
+interface Spheron extends InviteClass {
 }
 export default Spheron;
