@@ -1,8 +1,27 @@
 
 import { Base } from '../base'
-import { DomainDelete, DomainsRequest, DomainsResponse, UpdateDomainsRequest, VerifyDomainType } from './types'
+import { DomainDelete, DomainsGetResponse, DomainsRequest, DomainsResponse, UpdateDomainsRequest, VerifyDomainType } from './types'
 
 export class Domain extends Base {
+  /**
+   * domain for the project.
+   @param {string}id: Project Id
+   @returns {DomainsResponse}:Get the domains of the project.
+  */
+  async getDomain (id: string): Promise<DomainsGetResponse> {
+    return await this.getData(`/v1/project/${id}/domains`)
+  }
+
+  /**
+   * domain for the project.
+   @param {string}id: Project Id
+   @param {string}domainId: domain Id
+   @returns {DomainsResponse}:Get the domains of the project.
+  */
+  async getDomainByDomainId (id: string, domainId: string): Promise<DomainsResponse> {
+    return await this.getData(`/v1/project/${id}/domains/${domainId}`)
+  }
+
   /**
    * Add a new domain for the project.
    @param {string}id: Project Id
@@ -20,7 +39,7 @@ export class Domain extends Base {
    @param {UpdateDomainsRequest}obj: Domain Request Data object input
    @returns {DomainsResponse}:Updated domain.
   */
-  async updateDomainByProjectId (id: string, domainId: string, obj: UpdateDomainsRequest): Promise<DomainsResponse> {
+  async updateDomainByDomainId (id: string, domainId: string, obj: UpdateDomainsRequest): Promise<DomainsResponse> {
     return await this.patchData(`/v1/project/${id}/domains/${domainId}`, obj)
   }
 
@@ -30,7 +49,7 @@ export class Domain extends Base {
    @param {string}domainId: Domain Id
    @returns {DomainDelete}:Success of the deletion.
   */
-  async deleteDomainByProjectId (id: string, domainId: string): Promise<DomainDelete> {
+  async deleteDomainByDomainId (id: string, domainId: string): Promise<DomainDelete> {
     return await this.deleteData(`/v1/project/${id}/domains/${domainId}`)
   }
 

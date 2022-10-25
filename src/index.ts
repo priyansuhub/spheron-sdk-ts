@@ -10,6 +10,7 @@ import { ConfigurationProject, DeploymentInfo, ProjectDetails, State } from './p
 import { Scope } from './scope'
 import { applyMixins } from './utils'
 import { InviteClass } from './invites'
+import { AddEnvironment } from './environment-variables'
 // Combining all the classes
 class Spheron extends Base {}
 interface Spheron extends Scope {}
@@ -25,7 +26,8 @@ interface Spheron extends DeploymentEnvironment {}
 interface Spheron extends Domain {}
 interface Spheron extends OrganizationUpdate {}
 interface Spheron extends InviteClass {}
+interface Spheron extends AddEnvironment {}
 
-applyMixins(Spheron, [Scope, GetOrganization, ProjectDetails, DeploymentInfo, State, ConfigurationProject, GetProject, CouponsClass, Deployment, DeploymentEnvironment, Domain, OrganizationUpdate, InviteClass])
+applyMixins(Spheron, [Scope, GetOrganization, ProjectDetails, DeploymentInfo, State, ConfigurationProject, GetProject, CouponsClass, Deployment, DeploymentEnvironment, Domain, OrganizationUpdate, InviteClass, AddEnvironment])
 
 export default Spheron

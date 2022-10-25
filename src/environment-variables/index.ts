@@ -13,15 +13,18 @@ export class AddEnvironment extends Base {
    @returns {PostEnvironmentResponse}:Added environment variables.
   */
   async addEnvironmentVariables (id: string, Name: string, Value: string, DeploymentEnvironment: string[]): Promise<PostEnvironmentResponse> {
-    let obj2: EnvVariable
-    obj2.name = Name
-    obj2.value = Value
-    obj2.deploymentEnvironments = DeploymentEnvironment
-    let obj3: EnvVariable[]
-    obj3.push(obj2)
-    let obj: PostEnvironmentRequest
-    obj.environmentVariables = obj3
-    return await this.postData(`/v1/project/${id}/environment-variables`, obj3)
+    const obj2: EnvVariable = {
+      name: Name,
+      value: Value,
+      deploymentEnvironments: DeploymentEnvironment
+    }
+    const obj3: EnvVariable[] = [
+      obj2
+    ]
+    const obj: PostEnvironmentRequest = {
+      environmentVariables: obj3
+    }
+    return await this.postData(`/v1/project/${id}/environment-variables`, obj)
   }
 
   /**
@@ -34,16 +37,19 @@ export class AddEnvironment extends Base {
    @returns {PutEnvironmentResponse}: Updated environment variable.
   */
   async updateEnvironmentVariable (id: string, envId: string, Name: string, Value: string, DeploymentEnvironment: string[]): Promise<PutEnvironmentResponse> {
-    let obj2: EnvVariable
-    obj2.name = Name
-    obj2.value = Value
-    obj2.deploymentEnvironments = DeploymentEnvironment
-    let obj3: EnvVariable[]
-    obj3.push(obj2)
-    let obj: PostEnvironmentRequest
-    obj.environmentVariables = obj3
+    const obj2: EnvVariable = {
+      name: Name,
+      value: Value,
+      deploymentEnvironments: DeploymentEnvironment
+    }
+    const obj3: EnvVariable[] = [
+      obj2
+    ]
+    const obj: PostEnvironmentRequest = {
+      environmentVariables: obj3
+    }
 
-    return await this.putData(`/v1/project/${id}/environment-variables/${envId}`, obj3)
+    return await this.putData(`/v1/project/${id}/environment-variables/${envId}`, obj)
   }
 
   /**

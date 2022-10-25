@@ -7,6 +7,7 @@ import { GetOrganization, GetProject, OrganizationUpdate } from './organization'
 import { ConfigurationProject, DeploymentInfo, ProjectDetails, State } from './project';
 import { Scope } from './scope';
 import { InviteClass } from './invites';
+import { AddEnvironment } from './environment-variables';
 declare class Spheron extends Base {
 }
 interface Spheron extends Scope {
@@ -34,5 +35,7 @@ interface Spheron extends Domain {
 interface Spheron extends OrganizationUpdate {
 }
 interface Spheron extends InviteClass {
+}
+interface Spheron extends AddEnvironment {
 }
 export default Spheron;

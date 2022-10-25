@@ -1,5 +1,7 @@
 import { ResponseDelete } from '../environment-variables/types'
-
+export declare interface DomainsGetResponse {
+  domain: Domains[]
+}
 export declare interface DomainsResponse {
   domain: Domains
 }

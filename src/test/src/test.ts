@@ -140,20 +140,135 @@ async function testDeleteInvite() {
 }
 
 
+/*
+==============Project============
+*/
+let projectId: string = '6305e4017ff6fa0013bd0d79'
+
+async function testProjectDetails() {
+  const data = await client.getProjectDetailsById(projectId)
+    console.log(data)
+}
+
+async function testProjectDeploymentEnv() {
+  const data = await client.getProjectDeploymentEnvironments(projectId)
+    console.log(data)
+}
+
+async function testGetConfigurationDetailsById() {
+  const data = await client.getConfigurationDetailsById(projectId)
+    console.log(data)
+}
+async function testGetAllDomainDetailsOfProject() {
+  const data = await client.getAllDomainDetailsOfProject(projectId)
+    console.log(data)
+}
+async function testGetDeploymentInfoByProjectId() {
+  const data = await client.getDeploymentInfoByProjectId(projectId)
+    console.log(data)
+}
+async function testGetDeploymentInfoByProjectIdLimit() {
+  const data = await client.getDeploymentInfoByProjectIdLimit(projectId, 2)
+    console.log(data)
+}
+async function testGetDeploymentInfoByProjectStatus() {
+  const data = await client.getDeploymentInfoByProjectStatus(projectId, 'Deployed')
+    console.log(data)
+}
+async function testDeploymentCount() {
+  const data = await client.getDeploymentCount(projectId)
+    console.log(data)
+}
+ /* Import it */
+ interface Configuration {
+  buildCommand: string
+  installCommand: string
+  workspace: string
+  publishDir: string
+  framework: string
+  nodeVersion: string
+}
+async function testPutConfiguration() {
+  let conf: Configuration = {
+    buildCommand: "Test",
+    installCommand: "Test",
+    workspace: "Test",
+    publishDir: "Test",
+    framework: "react",
+    nodeVersion: "V_12"
+  }
+  const data = await client.putConfiguration(projectId, conf)
+  console.log(data)
+}
+async function testUpdateState() {
+  const data = await client.updateState(projectId, "MAINTAINED")
+    console.log(data)
+}
 
 
+async function testaddEnvironmentVariables() {
+  const data = await client.addEnvironmentVariables(projectId, 'test_name', 'test_value', ['test_val'])
+  console.log(data)
+}
 
+async function testEnvUpd() {
+  const data = await client.updateEnvironmentVariable(projectId, '6305e4017ff6fa0013bd0d77','Something','Test',['Test_val'])
+    console.log(data)
+}
 
+async function testDeleteEnv() {
+  const data = await client.deleteEnvironmentVariable(projectId,'SomeEnvId')
+  console.log(data)
+}
 
-
-
-
-
-
-
-
-
-
+/*======*/
+async function testDeploymentEnvironment() {
+  const data = await client.getDeploymentEnvironment(projectId)
+  console.log(data)
+}
+async function testaddDeploymentEnvironment() {
+  const data = await client.addDeploymentEnvironment(projectId, 'test', ['test'], 'test')
+  console.log(data)
+}
+async function testdeleteDeploymentEnvironment() {
+  const data = await client.deleteDeploymentEnvironment(projectId, 'test')
+  console.log(data)
+}
+async function testactivateDeploymentEnvironment() {
+  const data = await client.activateDeploymentEnvironment(projectId, 'test')
+  console.log(data)
+}
+async function testdeactivateDeploymentEnvironment() {
+  const data = await client.deactivateDeploymentEnvironment(projectId, 'test')
+  console.log(data)
+}
+async function testGetDomain(){
+  const data = await client.getDomain(projectId)
+  console.log(data)
+}
+async function testGetDomainByDomainId(){
+  const data = await client.getDomainByDomainId(projectId,'6305e4027ff6fa0013bd0d7a')
+  console.log(data)
+}
+interface DomainsRequest {
+  link: string
+  type: string
+  deploymentEnvironments: string[]
+  isLatest: boolean
+  name: string
+}
+async function testPostDomains() {
+  let value: DomainsRequest = {
+    link: 'https://spheron.mypinata.cloud/ipfs/QmRQH4588TaS2m7UbGiTHfcvwHqvjeSuQpBR9kcgE82PmU',
+    type: 'subdomain',
+    deploymentEnvironments: [],
+    isLatest: true,
+    name: 'Production'
+  }
+  const data = await client.addDomainByProjectId(projectId, value)
+  console.log(data)
+}
+//6305e4027ff6fa0013bd0d7a
 
 
 
@@ -183,3 +298,18 @@ async function testDeleteInvite() {
 // testGetInvitesById()
 // testInviteMembers()
 // testDeleteInvite()
+// testProjectDetails()
+// testGetConfigurationDetailsById()
+// testGetAllDomainDetailsOfProject()
+// testGetDeploymentInfoByProjectId()
+// testGetDeploymentInfoByProjectIdLimit()
+// testGetDeploymentInfoByProjectStatus()
+// testDeploymentCount()
+// testPutConfiguration()
+// testUpdateState()
+// testaddEnvironmentVariables()
+// testEnvUpd()
+// testDeleteEnv()
+// testGetDomain()
+// testGetDomainByDomainId()
+// testPostDomains()
