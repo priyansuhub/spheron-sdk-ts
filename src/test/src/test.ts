@@ -268,6 +268,26 @@ async function testPostDomains() {
   const data = await client.addDomainByProjectId(projectId, value)
   console.log(data)
 }
+interface UpdateDomainsRequest {
+  link: string
+  deploymentEnvironments: string[]
+  isLatest: boolean
+  name: string
+}
+async function testUpdateDomain(){
+  let value: UpdateDomainsRequest ={
+    link :'https://spheron.mypinata.cloud/ipfs/QmRQH4588TaS2m7UbGiTHfcvwHqvjeSuQpBR9kcgE82PmU',
+    deploymentEnvironments: [],
+    isLatest:true,
+    name: 'Production'
+  }
+  const data = await client.updateDomainByDomainId(projectId,'6305e4027ff6fa0013bd0d7a',value)
+  console.log(data)
+}
+async function testDeleteDomain() {
+  const data = await client.deleteDomainByDomainId(projectId,'6305e4027ff6fa0013bd0d7a')
+  console.log(data)
+}
 //6305e4027ff6fa0013bd0d7a
 
 
@@ -313,3 +333,5 @@ async function testPostDomains() {
 // testGetDomain()
 // testGetDomainByDomainId()
 // testPostDomains()
+// testUpdateDomain()
+// testDeleteDomain()

@@ -200,10 +200,24 @@ async function testPostDomains() {
         link: 'https://spheron.mypinata.cloud/ipfs/QmRQH4588TaS2m7UbGiTHfcvwHqvjeSuQpBR9kcgE82PmU',
         type: 'subdomain',
         deploymentEnvironments: [],
-        isLatest: false,
+        isLatest: true,
         name: 'Production'
     };
     const data = await client.addDomainByProjectId(projectId, value);
     console.log(data);
 }
-testPostDomains();
+async function testUpdateDomain() {
+    let value = {
+        link: 'https://spheron.mypinata.cloud/ipfs/QmRQH4588TaS2m7UbGiTHfcvwHqvjeSuQpBR9kcgE82PmU',
+        deploymentEnvironments: [],
+        isLatest: true,
+        name: 'Production'
+    };
+    const data = await client.updateDomainByDomainId(projectId, '6305e4027ff6fa0013bd0d7a', value);
+    console.log(data);
+}
+async function testDeleteDomain() {
+    const data = await client.deleteDomainByDomainId(projectId, '6305e4027ff6fa0013bd0d7a');
+    console.log(data);
+}
+testProjectDetails();

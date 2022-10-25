@@ -1,5 +1,4 @@
 
-import fetch from 'isomorphic-unfetch'
 import axios from 'axios'
 // test
 // HTTP REQUEST HUB
@@ -9,28 +8,6 @@ export abstract class Base {
   constructor (key: string) {
     this.apiKey = 'Bearer' + ' ' + key
     this.baseUrl = 'https://api-v2.spheron.network'
-  }
-
-  public async invoke<T>(endpoint: string): Promise<T> {
-    const url = `${this.baseUrl}${endpoint}`
-
-    const headers = {
-      accept: 'application/json',
-      charset: 'utf-8',
-      authorization: this.apiKey
-    }
-
-    const config = {
-
-      headers
-    }
-    return await fetch(url, config).then(async response => {
-      if (response.ok) {
-        return await response.json()
-      } else {
-        throw new Error(response.statusText)
-      }
-    })
   }
 
   protected async patchData<T>(endpoint: string, value: any): Promise<T> {
@@ -49,7 +26,7 @@ export abstract class Base {
       )
       return data
     } catch (error) {
-      return error.message
+      return error.response.data
     }
   }
 
