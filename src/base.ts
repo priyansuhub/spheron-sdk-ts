@@ -170,7 +170,7 @@ export abstract class Base {
     }
   }
 
-  protected async getDataEmpty<T>(endpoint: string): Promise<T> {
+  protected async getDataParam<T>(endpoint: string): Promise<T> {
     try {
       const { data } = await axios.post<T>(
                 `${this.baseUrl}${endpoint}`,

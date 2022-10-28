@@ -1,40 +1,19 @@
+
 import { Base } from '../base'
-import { Authorize, DeploymentIdResponse, DeploymentRequest, DeploymentResponse, CancelDeployment, Redeploy } from './types'
+import { Authorize, DeploymentIdResponse, CancelDeployment, Redeploy, DeploymentRequest } from './types'
 
 export class Deployment extends Base {
   /**
-   * Start a deployment.
-   @param {string}orgId: Organization Id
-   @param {string}gitUrl: git url
-   @param {string}repoName: repo name
-   @param {string}uniqueTopicId: provide a unique topic id
-   @param {string}protocol: Protocol name arweave ipfs etc
-   @param {string}provider: Provider Name
-   @param {string}branch: Branch name
-   @returns {DeploymentResponse}:Information about the start of deployment.
+    deploy project
+   @param {DeploymentIdResponse}input
+   @returns {DeploymentIdResponse}:Information about the deployment
   */
-  async defaultDeployment (orgId: string, gitUrl: string, repoName: string, uniqueTopicId: string, protocol: string, provider: string, branch: string): Promise<DeploymentResponse> {
-    let obj: DeploymentRequest
-    obj.organizationId = orgId
-    obj.gitUrl = gitUrl
-    obj.repoName = repoName
-    obj.uniqueTopicId = uniqueTopicId
-    obj.configuration.buildCommand = 'string'
-    obj.configuration.installCommand = 'string'
-    obj.configuration.workspace = 'string'
-    obj.configuration.publishDir = 'string'
-    obj.configuration.framework = 'static'
-    obj.configuration.nodeVersion = 'V_12'
-    obj.env = {}
-    obj.protocol = protocol
-    obj.createDefaultWebhook = true
-    obj.provider = provider
-    obj.branch = branch
-    return await this.postData('/v1/deployment/', obj)
+  async deploy (input: DeploymentRequest): Promise<DeploymentIdResponse> {
+    return await this.postData('/v1/deployment/', input)
   }
 
   /**
-   Authorize the deployment.
+    get deployment.
    @param {string}id: Organization Id
    @returns {DeploymentIdResponse}:Information about the deployment
   */
@@ -76,3 +55,33 @@ export class Deployment extends Base {
 
   // }
 }
+// /**
+//  * Start a deployment.
+//  @param {string}orgId: Organization Id
+//  @param {string}gitUrl: git url
+//  @param {string}repoName: repo name
+//  @param {string}uniqueTopicId: provide a unique topic id
+//  @param {string}protocol: Protocol name arweave ipfs etc
+//  @param {string}provider: Provider Name
+//  @param {string}branch: Branch name
+//  @returns {DeploymentResponse}:Information about the start of deployment.
+// */
+// async defaultDeployment (orgId: string, gitUrl: string, repoName: string, uniqueTopicId: string, protocol: string, provider: string, branch: string): Promise<DeploymentResponse> {
+//   let obj: DeploymentRequest
+//   obj.organizationId = orgId
+//   obj.gitUrl = gitUrl
+//   obj.repoName = repoName
+//   obj.uniqueTopicId = uniqueTopicId
+//   obj.configuration.buildCommand = 'string'
+//   obj.configuration.installCommand = 'string'
+//   obj.configuration.workspace = 'string'
+//   obj.configuration.publishDir = 'string'
+//   obj.configuration.framework = 'static'
+//   obj.configuration.nodeVersion = 'V_12'
+//   obj.env = {}
+//   obj.protocol = protocol
+//   obj.createDefaultWebhook = true
+//   obj.provider = provider
+//   obj.branch = branch
+//   return await this.postData('/v1/deployment/', obj)
+// }

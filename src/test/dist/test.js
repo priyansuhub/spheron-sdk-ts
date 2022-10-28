@@ -5,62 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_js_1 = __importDefault(require("../../../dist/index.js"));
 const client = new index_js_1.default('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlLZXkiOiI5MDZiNGM0OTBhYTUyNmVkNmQ3YTgxYzcxODU5YTNmMmI0MjVjYjhiNzg1MjViNTdjNWVkYmEyZDZlNGVlYzU4MjA2ODc1NzZlZmYzY2M1MDJiMWM5YzIwYjQ1MmY5YmQwMDNiYzZkMDY0OTkyNTY2MmFmZGVkZGE5MTQwZTYzNCIsImlhdCI6MTY2NTEwNjYxOCwiaXNzIjoid3d3LnNwaGVyb24ubmV0d29yayJ9.HK-hM_3dq0VXkQP2ddjOToHIMFy0LcFwqOWjXaP7sGg');
-async function testScope() {
-    const data = await client.getOrganisationId();
-    console.log(data);
-}
-async function testOrganizationDetails(id) {
-    const data = await client.getOrganizationDetails(id);
-    console.log(data);
-}
-async function testOrganizationUsers(id) {
-    const data = await client.getOrganizationUsers(id);
-    console.log(data);
-}
-async function testOrganizationUsersById(id, userId) {
-    const data = await client.getOrganizationUserById(id, userId);
-    console.log(data);
-}
-async function testUserPlatformProfile(id, userId) {
-    const data = await client.getUserPlatformProfile(id, userId);
-    console.log(data);
-}
-async function testUserProviderProfile(id, userId) {
-    const data = await client.getAllProviderProfilesOfUser(id, userId);
-    console.log(data);
-}
-async function testUserProviderProfileById(id, userId, providerProfileId) {
-    const data = await client.getProviderProfileOfUserById(id, userId, providerProfileId);
-    console.log(data);
-}
-async function testUserOrganization(id, userId) {
-    const data = await client.getUserOrganisationsById(id, userId);
-    console.log(data);
-}
-async function testWalletDetails(id) {
-    const data = await client.getWalletDetails(id);
-    console.log(data);
-}
-async function testWalletNetworkDetails(id) {
-    const data = await client.getWalletNetworkDetails(id);
-    console.log(data);
-}
-async function testWalletTokenDetails(id) {
-    const data = await client.getWalletTokenDetails(id);
-    console.log(data);
-}
-async function testAllInvitedMembers(id) {
-    const data = await client.getAllInvitedMembers(id);
-    console.log(data);
-}
-async function testInvitedMembersById(id, inviteId) {
-    const data = await client.getInvitedMembersById(id, inviteId);
-    console.log(data);
-}
-async function testOverdueStatus(id) {
-    const data = await client.overdueStatus(id);
-    console.log(data);
-}
 const id = '63039637346a680012aaf70b';
 const userId = '63039637346a680012aaf708';
 const providerProfileId = '63039637346a680012aaf709';
@@ -69,21 +13,82 @@ const name = 'Priyansu Rath';
 const username = 'Prcode';
 const image = 'https://c4.wallpaperflare.com/wallpaper/563/857/120/chain-tattoo-dark-prince-prince-of-persia-the-dark-prince-hd-wallpaper-preview.jpg';
 const deleteMember = 'something Help me test';
+let projectId = '6305e4017ff6fa0013bd0d79';
+async function testScope() {
+    const data = await client.getOrganisationId();
+    console.log(data);
+}
+async function testOrganizationDetails() {
+    const data = await client.getOrganizationDetails(id);
+    console.log(data);
+}
+async function testOrganizationUsers() {
+    const data = await client.getOrganizationUsers(id);
+    console.log(data);
+}
+async function testOrganizationUsersById() {
+    const data = await client.getOrganizationUserById(id, userId);
+    console.log(data);
+}
+async function testProjectOrg() {
+    const data = await client.getProjectOrg(id);
+    console.log(data);
+}
+async function testUserPlatformProfile() {
+    const data = await client.getUserPlatformProfile(id, userId);
+    console.log(data);
+}
+async function testUserProviderProfile() {
+    const data = await client.getAllProviderProfilesOfUser(id, userId);
+    console.log(data);
+}
+async function testUserProviderProfileById() {
+    const data = await client.getProviderProfileOfUserById(id, userId, providerProfileId);
+    console.log(data);
+}
+async function testUserOrganization() {
+    const data = await client.getUserOrganisationsById(id, userId);
+    console.log(data);
+}
+async function testWalletDetails() {
+    const data = await client.getWalletDetails(id);
+    console.log(data);
+}
+async function testWalletNetworkDetails() {
+    const data = await client.getWalletNetworkDetails(id);
+    console.log(data);
+}
+async function testWalletTokenDetails() {
+    const data = await client.getWalletTokenDetails(id);
+    console.log(data);
+}
+async function testAllInvitedMembers() {
+    const data = await client.getAllInvitedMembers(id);
+    console.log(data);
+}
+async function testInvitedMembersById() {
+    const data = await client.getInvitedMembersById(id, inviteId);
+    console.log(data);
+}
+async function testOverdueStatus(id) {
+    const data = await client.overdueStatus(id);
+    console.log(data);
+}
 async function testUpdateOrganizationProfile() {
     let profile = {
         name: 'Data',
         username: 'LALA',
         image: 'LALA'
     };
-    const data = await client.updateOrganizationProfile('63039637346a680012aaf70b', profile);
+    const data = await client.updateOrganizationProfile(id, profile);
     console.log(data);
 }
 async function testUpdateOrganizationProfileParam() {
-    const data = await client.updateOrganizationProfileParams('63039637346a680012aaf70b', name, username, image);
+    const data = await client.updateOrganizationProfileParams(id, name, username, image);
     console.log(data);
 }
 async function testProjectCount() {
-    const data = await client.getProjectCount('63039637346a680012aaf70b');
+    const data = await client.getProjectCount(id);
     console.log(data);
 }
 async function testDeleteOrganization() {
@@ -106,7 +111,6 @@ async function testDeleteInvite() {
     const data = await client.deleteInvite(id, id);
     console.log(data);
 }
-let projectId = '6305e4017ff6fa0013bd0d79';
 async function testProjectDetails() {
     const data = await client.getProjectDetailsById(projectId);
     console.log(data);
@@ -152,7 +156,7 @@ async function testPutConfiguration() {
     console.log(data);
 }
 async function testUpdateState() {
-    const data = await client.updateState(projectId, "MAINTAINED");
+    const data = await client.updateState(projectId, "ARCHIVED");
     console.log(data);
 }
 async function testaddEnvironmentVariables() {
@@ -172,19 +176,19 @@ async function testDeploymentEnvironment() {
     console.log(data);
 }
 async function testaddDeploymentEnvironment() {
-    const data = await client.addDeploymentEnvironment(projectId, 'test', ['test'], 'test');
+    const data = await client.addDeploymentEnvironment(projectId, '', ['test'], '');
     console.log(data);
 }
 async function testdeleteDeploymentEnvironment() {
-    const data = await client.deleteDeploymentEnvironment(projectId, 'test');
+    const data = await client.deleteDeploymentEnvironment(projectId, '');
     console.log(data);
 }
 async function testactivateDeploymentEnvironment() {
-    const data = await client.activateDeploymentEnvironment(projectId, 'test');
+    const data = await client.activateDeploymentEnvironment(projectId, '');
     console.log(data);
 }
 async function testdeactivateDeploymentEnvironment() {
-    const data = await client.deactivateDeploymentEnvironment(projectId, 'test');
+    const data = await client.deactivateDeploymentEnvironment(projectId, '');
     console.log(data);
 }
 async function testGetDomain() {
@@ -208,10 +212,10 @@ async function testPostDomains() {
 }
 async function testUpdateDomain() {
     let value = {
-        link: 'https://spheron.mypinata.cloud/ipfs/QmRQH4588TaS2m7UbGiTHfcvwHqvjeSuQpBR9kcgE82PmU',
+        link: '',
         deploymentEnvironments: [],
         isLatest: true,
-        name: 'Production'
+        name: ''
     };
     const data = await client.updateDomainByDomainId(projectId, '6305e4027ff6fa0013bd0d7a', value);
     console.log(data);
@@ -220,4 +224,8 @@ async function testDeleteDomain() {
     const data = await client.deleteDomainByDomainId(projectId, '6305e4027ff6fa0013bd0d7a');
     console.log(data);
 }
-testProjectDetails();
+async function testVerifyDomain() {
+    const data = await client.verifyDomainByProjectId(projectId, '');
+    console.log(data);
+}
+testUpdateState();

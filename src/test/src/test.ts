@@ -7,61 +7,73 @@ interface Profile {
   username: string
   image: string
 }
+const id: string = '63039637346a680012aaf70b';
+const userId: string = '63039637346a680012aaf708';
+const providerProfileId:string = '63039637346a680012aaf709'
+const inviteId:string = 'HELP ME! EXECUTE THIS'
+const name: string = 'Priyansu Rath'
+const username: string = 'Prcode'
+const image: string = 'https://c4.wallpaperflare.com/wallpaper/563/857/120/chain-tattoo-dark-prince-prince-of-persia-the-dark-prince-hd-wallpaper-preview.jpg'
+const deleteMember:string = 'something Help me test'
+let projectId: string = '6305e4017ff6fa0013bd0d79'
 
 async function testScope(){
   const data = await client.getOrganisationId()
   console.log(data)
 }
 
-async function testOrganizationDetails(id: string){  
+async function testOrganizationDetails(){  
   const data = await client.getOrganizationDetails(id)
   console.log(data)
 }
 
-async function testOrganizationUsers(id: string){  
+async function testOrganizationUsers(){  
   const data = await client.getOrganizationUsers(id)
   console.log(data)
 }
 
-async function testOrganizationUsersById(id: string, userId: string){  
+async function testOrganizationUsersById(){  
   const data = await client.getOrganizationUserById(id, userId)
   console.log(data)
 }
-
-async function testUserPlatformProfile(id: string, userId: string){
+async function testProjectOrg(){
+  const data = await client.getProjectOrg(id)
+  console.log(data)
+}
+async function testUserPlatformProfile(){
   const data = await client.getUserPlatformProfile(id, userId)
   console.log(data)
 }
-async function testUserProviderProfile(id: string, userId: string){
+async function testUserProviderProfile(){
   const data = await client.getAllProviderProfilesOfUser(id, userId)
   console.log(data)
 }
-async function testUserProviderProfileById(id: string, userId: string, providerProfileId:string){
+async function testUserProviderProfileById(){
   const data = await client.getProviderProfileOfUserById(id, userId, providerProfileId)
   console.log(data)
 }
-async function testUserOrganization(id: string, userId: string){
+async function testUserOrganization(){
   const data = await client.getUserOrganisationsById(id, userId)
   console.log(data)
 }
-async function testWalletDetails(id: string){  
+async function testWalletDetails(){  
   const data = await client.getWalletDetails(id)
   console.log(data)
 }
 
-async function testWalletNetworkDetails(id: string){  
+async function testWalletNetworkDetails(){  
   const data = await client.getWalletNetworkDetails(id)
   console.log(data)
 }
-async function testWalletTokenDetails(id: string){  
+async function testWalletTokenDetails(){  
   const data = await client.getWalletTokenDetails(id)
   console.log(data)
 }
-async function testAllInvitedMembers(id: string){  
+async function testAllInvitedMembers(){  
   const data = await client.getAllInvitedMembers(id)
   console.log(data)
 }
-async function testInvitedMembersById(id: string, inviteId:string){  
+async function testInvitedMembersById(){  
   const data = await client.getInvitedMembersById(id,inviteId)
   console.log(data)
 }
@@ -69,18 +81,12 @@ async function testOverdueStatus(id: string){
   const data = await client.overdueStatus(id)
   console.log(data)
 }
-const id: string = '63039637346a680012aaf70b';
-const userId: string = '63039637346a680012aaf708';
-const providerProfileId:string = '63039637346a680012aaf709'
-const inviteId:string = 'HELP ME! EXECUTE THIS'
+
 
 /*
   Organization Post Requests
 */
-const name: string = 'Priyansu Rath'
-const username: string = 'Prcode'
-const image: string = 'https://c4.wallpaperflare.com/wallpaper/563/857/120/chain-tattoo-dark-prince-prince-of-persia-the-dark-prince-hd-wallpaper-preview.jpg'
-const deleteMember:string = 'something Help me test'
+
 
 
 
@@ -91,23 +97,21 @@ async function testUpdateOrganizationProfile(){
     username: 'LALA',
     image: 'LALA'
   }
-  const data = await client.updateOrganizationProfile('63039637346a680012aaf70b', profile)
+  const data = await client.updateOrganizationProfile(id, profile)
   console.log(data)
 }
 
 async function testUpdateOrganizationProfileParam(){
-  const data = await client.updateOrganizationProfileParams('63039637346a680012aaf70b', name,username,image)
+  const data = await client.updateOrganizationProfileParams(id, name,username,image)
   console.log(data)
 }
 
 async function testProjectCount() {
-  const data = await client.getProjectCount('63039637346a680012aaf70b')
+  const data = await client.getProjectCount(id)
   console.log(data)
 }
 async function testDeleteOrganization() {
   const data = await client.deleteDataParam('wdwd','wddwwd')
-  //response was getaddrinfo ENOTFOUND api-v2.spheron.networkwdwd
-  // works okay probably
   console.log(data)
 }
 /*
@@ -143,7 +147,7 @@ async function testDeleteInvite() {
 /*
 ==============Project============
 */
-let projectId: string = '6305e4017ff6fa0013bd0d79'
+
 
 async function testProjectDetails() {
   const data = await client.getProjectDetailsById(projectId)
@@ -201,7 +205,7 @@ async function testPutConfiguration() {
   console.log(data)
 }
 async function testUpdateState() {
-  const data = await client.updateState(projectId, "MAINTAINED")
+  const data = await client.updateState(projectId, "ARCHIVED")
     console.log(data)
 }
 
@@ -227,19 +231,19 @@ async function testDeploymentEnvironment() {
   console.log(data)
 }
 async function testaddDeploymentEnvironment() {
-  const data = await client.addDeploymentEnvironment(projectId, 'test', ['test'], 'test')
+  const data = await client.addDeploymentEnvironment(projectId, '', ['test'], '')
   console.log(data)
 }
 async function testdeleteDeploymentEnvironment() {
-  const data = await client.deleteDeploymentEnvironment(projectId, 'test')
+  const data = await client.deleteDeploymentEnvironment(projectId, '')
   console.log(data)
 }
 async function testactivateDeploymentEnvironment() {
-  const data = await client.activateDeploymentEnvironment(projectId, 'test')
+  const data = await client.activateDeploymentEnvironment(projectId, '')
   console.log(data)
 }
 async function testdeactivateDeploymentEnvironment() {
-  const data = await client.deactivateDeploymentEnvironment(projectId, 'test')
+  const data = await client.deactivateDeploymentEnvironment(projectId, '')
   console.log(data)
 }
 async function testGetDomain(){
@@ -276,10 +280,10 @@ interface UpdateDomainsRequest {
 }
 async function testUpdateDomain(){
   let value: UpdateDomainsRequest ={
-    link :'https://spheron.mypinata.cloud/ipfs/QmRQH4588TaS2m7UbGiTHfcvwHqvjeSuQpBR9kcgE82PmU',
+    link :'',
     deploymentEnvironments: [],
     isLatest:true,
-    name: 'Production'
+    name: ''
   }
   const data = await client.updateDomainByDomainId(projectId,'6305e4027ff6fa0013bd0d7a',value)
   console.log(data)
@@ -288,27 +292,38 @@ async function testDeleteDomain() {
   const data = await client.deleteDomainByDomainId(projectId,'6305e4027ff6fa0013bd0d7a')
   console.log(data)
 }
-//6305e4027ff6fa0013bd0d7a
 
+async function testVerifyDomain() {
+  const data = await client.verifyDomainByProjectId(projectId,'')
+  console.log(data)
+}
 
+// async function testDeployment() {
 
+//   const data = await client.deploy()
+// }
 
+// async function testVerifyDomain() {
+//   const data = await client.verifyDomainByProjectId(projectId,'')
+//   console.log(data)
+// }
 
 
 // testScope()
-// testOrganizationDetails(id)
-// testOrganizationUsers(id)
-// testOrganizationUsersById(id,userId)
-// testUserPlatformProfile(id,userId)
-// testUserProviderProfile(id,userId)
-// testUserProviderProfileById(id,userId,providerProfileId)
-// testUserOrganization(id,userId)
-// testWalletDetails(id)
-// testWalletNetworkDetails(id)
-// testWalletTokenDetails(id)
-// testAllInvitedMembers(id)
-// testInvitedMembersById(id, inviteId)
-// testOverdueStatus(id) 
+// testOrganizationDetails()
+// testOrganizationUsers()
+// testProjectOrg()
+// testOrganizationUsersById()
+// testUserPlatformProfile()
+// testUserProviderProfile()
+// testUserProviderProfileById()
+// testUserOrganization()
+// testWalletDetails()
+// testWalletNetworkDetails()
+// testWalletTokenDetails()
+// testAllInvitedMembers()
+// testInvitedMembersById()
+// testOverdueStatus() 
 // testUpdateOrganizationProfileParams()
 // testUpdateOrganizationProfile()
 // testUpdateOrganizationProfileParam()
@@ -326,7 +341,7 @@ async function testDeleteDomain() {
 // testGetDeploymentInfoByProjectStatus()
 // testDeploymentCount()
 // testPutConfiguration()
-// testUpdateState()
+testUpdateState()
 // testaddEnvironmentVariables()
 // testEnvUpd()
 // testDeleteEnv()
@@ -335,3 +350,4 @@ async function testDeleteDomain() {
 // testPostDomains()
 // testUpdateDomain()
 // testDeleteDomain()
+// testVerifyDomain()
