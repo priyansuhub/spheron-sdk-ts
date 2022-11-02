@@ -1,6 +1,6 @@
 import { Base } from '../base'
 import { InvitedMembers, NetworkDetails, Organization, PlatformProfile, ProviderProfile, TokenDetails, Wallet, Users, ProjectCount, Profile, DeleteResponse, Overdue, Project } from './types'
-
+// Helper function
 function serchUserById (P: Organization, idf: string): Users | string {
   const value: Users[] = P.users
   for (let i: number = 0; i < value.length; i++) {
@@ -10,7 +10,7 @@ function serchUserById (P: Organization, idf: string): Users | string {
   }
   return 'Invalid User'
 }
-
+// Helper function
 function searchProviderProfileById (P: Users, idpP: string): ProviderProfile | string {
   const value: ProviderProfile[] = P.providerProfiles
   for (let i: number = 0; i < value.length; i++) {
