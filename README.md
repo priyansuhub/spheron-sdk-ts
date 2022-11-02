@@ -1,15 +1,14 @@
 
-# Spheron SDK TS
+# 🚀 Spheron SDK TS
 ![Banner](./images/1642011043069.jpeg)
 The Spheron SDK implements the exposed endpoints provided in SwaggerUI
 
 [Swagger UI](https://api-v2.spheron.network/docs/rest-api)
 
 
+# 😵 Run Locally 
 
-# Run Locally
-
-Clone the project
+:broccoli: Clone the project 
 
 ```bash
   git clone https://github.com/priyansuhub/spheron-sdk-ts.git
@@ -31,26 +30,26 @@ Install dependencies
   npm run build
 ```
 
-# Test
+# Test 🧑‍💻
 
-Note: 
+Note: 📔
 
-Each test functions has no parameters
+👉 Each test functions has no parameters
 
-Output is console logged
+👉 Output is console logged
 
-Functions with parameters to be looked on carefully
+👉 Functions with parameters to be looked on carefully
 
-Uncomment the test function
+👉 Uncomment the test function
 
   ```
     cd src/test
     tsc && node dist/test.js
   ```
 
-# SDK Classes
+# 🙇‍♂️ SDK Classes
 
-#### Abstract base class 
+#### 💫 Abstract base class 
 
 ```
   Base class
@@ -69,7 +68,7 @@ Uncomment the test function
 | `method` | `postDataEmpty<T>(endpoint: string): Promise<T>` |  returns POST data response |
 | `method` | `async getDataParam<T>(endpoint: string): Promise<T> ` |  returns GET data response |
 
-#### GetOrganization class extends base class
+#### 💫 GetOrganization class extends base class
 
 ```
   GetOrganization class
@@ -96,7 +95,7 @@ Uncomment the test function
 | `method` | `updateOrganizationProfile (id: string, obj: Profile): Promise<boolean>  ` |  boolean value if the data got updated or Not|
 | `method` | `deleteOrganization (id: string, userId: string): Promise<DeleteResponse>  ` | DeleteResponse|
 
-#### InviteClass class extends base class
+#### 💫 InviteClass class extends base class
 
 ```
   InviteClass class
@@ -109,7 +108,7 @@ Uncomment the test function
 | `method` | `deleteInvite (id: string, inviteId: string): Promise<Invite>` |  The information about the deleted invite.|
 
 
-#### ProjectDetails class extends base class
+#### 💫 ProjectDetails class extends base class
 
 ```
   ProjectDetails class
@@ -123,7 +122,7 @@ Uncomment the test function
 | `method` | `getAllDomainDetailsOfProject (id: string): Promise<Domains[]>` | Array of domain details of the project |
 | `method` | `getDomainDetailsOfProjectByName (id: string, name: string): Promise<Domains>` |  domain details of the project |
 
-#### DeploymentInfo class extends base class
+#### 💫 DeploymentInfo class extends base class
 
 ```
   DeploymentInfo class
@@ -137,7 +136,7 @@ Uncomment the test function
 | `method` | `getDeploymentCount (id: string): Promise<ProjectDeploymentCount>` | Information about the number of deployments. |
 
 
-#### State class extends base class
+#### 💫 State class extends base class
 
 ```
   State class
@@ -147,7 +146,7 @@ Uncomment the test function
 | :-------- | :------- | :-------------------------   |
 | `method` | `updateState (id: string, uState: string): Promise<StateResponse>` | Message about the changed state.|
 
-#### CouponsClass class extends base class
+#### 💫 CouponsClass class extends base class
 
 ```
   CouponsClass class
