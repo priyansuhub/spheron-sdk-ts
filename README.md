@@ -8,23 +8,25 @@ The Spheron SDK implements the exposed endpoints provided in SwaggerUI
 
 # 😵 Run Locally 
 
-:broccoli: Clone the project 
+🥦 Clone the project 
 
 ```bash
   git clone https://github.com/priyansuhub/spheron-sdk-ts.git
 ```
 
-Go to the project directory
+🧋 Go to the project directory
 
 ```bash
   cd spheron-sdk-ts/src
 ```
 
-Install dependencies
+🥑 Install dependencies
 
 ```bash
   npm install
 ```
+
+🏗️ Build Project
 
 ```bash
   npm run build
@@ -49,7 +51,7 @@ Note: 📔
 
 # 🙇‍♂️ SDK Classes
 
-#### 💫 Abstract base class 
+#### 🌟 Abstract base class 
 
 ```
   Base class
@@ -152,6 +154,64 @@ Note: 📔
   CouponsClass class
 ```
 
-| State | API     | Description                  |
+| CouponsClass | API     | Description                  |
 | :-------- | :------- | :-------------------------   |
 | `method` | `getCouponDetails (id: string): Promise<Coupons>` |Get request coupon details|
+
+#### 💫 Domain class extends base class
+
+```
+  Domain class
+```
+
+| Domain | API     | Description                  |
+| :-------- | :------- | :-------------------------   |
+| `method` | `getDomain (id: string): Promise<DomainsGetResponse>` | Get the domains of the project. |
+| `method` | `getDomainByDomainId (id: string, domainId: string): Promise<DomainsResponse>` |  Get the domain of the project by Id. |
+| `method` | `addDomainByProjectId (id: string, obj: DomainsRequest): Promise<DomainsResponse>` | Added domain. |
+| `method` | `updateDomainByDomainId (id: string, domainId: string, obj: UpdateDomainsRequest): Promise<DomainsResponse>` |  Updated domain. |
+| `method` | `deleteDomainByDomainId (id: string, domainId: string): Promise<DomainDelete>` |  Success of the deletion. |
+| `method` | `verifyDomainByProjectId (id: string, domainId: string): Promise<VerifyDomainType>` |  Result of the operation.|
+
+
+#### 💫 AddEnvironment class extends base class
+
+```
+  AddEnvironment class
+```
+
+| AddEnvironment | API     | Description                  |
+| :-------- | :------- | :-------------------------   |
+| `method` | `addEnvironmentVariables (id: string, Name: string, Value: string, DeploymentEnvironment: string[]): Promise<PostEnvironmentResponse>` | Added environment variables. |
+| `method` | `updateEnvironmentVariable (id: string, envId: string, Name: string, Value: string, DeploymentEnvironment: string[]): Promise<PutEnvironmentResponse> ` |  Updated environment variable. |
+| `method` | `deleteEnvironmentVariable (id: string, envId: string): Promise<ResponseDelete>` | Result of the delete operation. |
+
+#### 💫 DeploymentEnvironment class extends base class
+
+```
+  DeploymentEnvironment class
+```
+
+| DeploymentEnvironment | API     | Description                  |
+| :-------- | :------- | :-------------------------   |
+| `method` | `getDeploymentEnvironment (id: string): Promise<DeploymentEnvGet>` | List of deployment environments. |
+| `method` | `addDeploymentEnvironment (id: string, Name: string, Branches: string[], Protocol: string): Promise<addDeploymentEnvResponse>` | Added deployment environment |
+| `method` | ` updateDeploymentEnvironmnet (id: string, envVarId: string, Name: string, Branches: string[], Protocol: string): Promise<updateDeploymentEnvResponse>` | Updated deployment environment |
+| `method` | ` deleteDeploymentEnvironmnet (id: string, envVarId: string): Promise<ResponseDelete>>` |Deleted deployment environment |
+| `method` | ` activateDeploymentEnvironment (id: string, envVarId: string): Promise<updateDeploymentEnvResponse>` |  activated deployment environment|
+| `method` | ` deactivateDeploymentEnvironment (id: string, envVarId: string): Promise<updateDeploymentEnvResponse> ` |  Deactivated deployment environment |
+
+#### 💫  Deployment class extends base class
+
+```
+   Deployment class
+```
+
+|  Deployment | API     | Description                  |
+| :-------- | :------- | :-------------------------   |
+| `method` | `deploy (input: DeploymentRequest): Promise<DeploymentIdResponse>` | Information about the deployment |
+| `method` | `getDeployment (id: string): Promise<DeploymentIdResponse>` | Information about the deployment |
+| `method` | ` authorizeDeployment (id: string): Promise<Authorize>` | Information about the deployment |
+| `method` | ` cancelDeployment (id: string): Promise<CancelDeployment> ` |Information about the cancelation of deployment. |
+| `method` | ` redeployDeployment (id: string): Promise<Redeploy>` |  Information about the redeployment.|
+| `method` | ` defaultDeployment (orgId: string, gitUrl: string, repoName: string, uniqueTopicId: string, protocol: string, provider: string, branch: string): Promise<DeploymentResponse>` |  Information about the start of deployment. |
