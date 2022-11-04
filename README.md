@@ -218,4 +218,4 @@ Note: 📔
 
 📹 Video Tutorial 🤩
 
-[!Video](https://www.youtube.com/watch?v=_NyGIuu-_D8)
+[Video](https://www.youtube.com/watch?v=_NyGIuu-_D8)
