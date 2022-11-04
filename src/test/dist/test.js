@@ -228,4 +228,20 @@ async function testVerifyDomain() {
     const data = await client.verifyDomainByProjectId(projectId, '');
     console.log(data);
 }
-testUpdateState();
+async function testDefaultDeployment() {
+    let orgId = '63039637346a680012aaf70b';
+    let gitUrl = 'https://github.com/priyansuhub/testreactlocal.git';
+    let repoName = 'testreactlocal';
+    let protocol = "ipfs-filecoin";
+    let provider = 'GITHUB';
+    let branch = 'main';
+    let buildCommand = 'yarn build';
+    let installCommand = 'yarn install';
+    let workspace = "";
+    let publishDir = "build";
+    let framework = 'react';
+    let nodeVersion = 'V_14';
+    let data = await client.defaultDeployment(orgId, gitUrl, repoName, protocol, provider, branch, buildCommand, installCommand, workspace, publishDir, framework, nodeVersion);
+    console.log(data);
+}
+testDefaultDeployment();

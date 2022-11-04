@@ -1,6 +1,8 @@
 
+import { Configuration } from '../organization/types'
 import { Base } from '../base'
-import { Authorize, DeploymentIdResponse, CancelDeployment, Redeploy, DeploymentRequest } from './types'
+import { Authorize, DeploymentIdResponse, CancelDeployment, Redeploy, DeploymentRequest, DeploymentResponse } from './types'
+import { v4 as uuidv4 } from 'uuid'
 
 export class Deployment extends Base {
   /**
@@ -54,34 +56,40 @@ export class Deployment extends Base {
   // async frameworkSuggestion (owner: string, branch: string, reqo: string, providerName: string, root: string): Promise<SuggestedFramework> {
 
   // }
+
+  /**
+ * Start a deployment.
+ @param {string}orgId: Organization Id
+ @param {string}gitUrl: git url
+ @param {string}repoName: repo name
+ @param {string}uniqueTopicId: provide a unique topic id
+ @param {string}protocol: Protocol name arweave ipfs etc
+ @param {string}provider: Provider Name
+ @param {string}branch: Branch name
+ @returns {DeploymentResponse}:Information about the start of deployment.
+*/
+  async defaultDeployment (orgId: string, gitUrl: string, repoName: string, protocol: string, provider: string, branch: string, buildCommand: string, installCommand: string, workspace: string, publishDir: string, framework: string, nodeVersion: string): Promise<DeploymentResponse> {
+    const uuidvalue: string = uuidv4()
+    const orgdetails: Configuration = {
+      buildCommand,
+      installCommand,
+      workspace,
+      publishDir,
+      framework,
+      nodeVersion
+    }
+    const obj: DeploymentRequest = {
+      organizationId: orgId,
+      gitUrl,
+      repoName,
+      uniqueTopicId: uuidvalue,
+      configuration: orgdetails,
+      env: {},
+      protocol,
+      createDefaultWebhook: true,
+      provider,
+      branch
+    }
+    return await this.postData('/v1/deployment/', obj)
+  }
 }
-// /**
-//  * Start a deployment.
-//  @param {string}orgId: Organization Id
-//  @param {string}gitUrl: git url
-//  @param {string}repoName: repo name
-//  @param {string}uniqueTopicId: provide a unique topic id
-//  @param {string}protocol: Protocol name arweave ipfs etc
-//  @param {string}provider: Provider Name
-//  @param {string}branch: Branch name
-//  @returns {DeploymentResponse}:Information about the start of deployment.
-// */
-// async defaultDeployment (orgId: string, gitUrl: string, repoName: string, uniqueTopicId: string, protocol: string, provider: string, branch: string): Promise<DeploymentResponse> {
-//   let obj: DeploymentRequest
-//   obj.organizationId = orgId
-//   obj.gitUrl = gitUrl
-//   obj.repoName = repoName
-//   obj.uniqueTopicId = uniqueTopicId
-//   obj.configuration.buildCommand = 'string'
-//   obj.configuration.installCommand = 'string'
-//   obj.configuration.workspace = 'string'
-//   obj.configuration.publishDir = 'string'
-//   obj.configuration.framework = 'static'
-//   obj.configuration.nodeVersion = 'V_12'
-//   obj.env = {}
-//   obj.protocol = protocol
-//   obj.createDefaultWebhook = true
-//   obj.provider = provider
-//   obj.branch = branch
-//   return await this.postData('/v1/deployment/', obj)
-// }

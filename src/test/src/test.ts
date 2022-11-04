@@ -341,7 +341,7 @@ async function testVerifyDomain() {
 // testGetDeploymentInfoByProjectStatus()
 // testDeploymentCount()
 // testPutConfiguration()
-testUpdateState()
+// testUpdateState()
 // testaddEnvironmentVariables()
 // testEnvUpd()
 // testDeleteEnv()
@@ -351,3 +351,65 @@ testUpdateState()
 // testUpdateDomain()
 // testDeleteDomain()
 // testVerifyDomain()
+
+//deployment id
+//635855fd27b486001187a192
+
+//"configuration": {
+//   "nodeVersion": "V_14",
+//   "framework": "react",
+//   "workspace": "",
+//   "installCommand": "yarn install",
+//   "buildCommand": "yarn build",
+//   "publishDir": "build"
+// }
+
+//branch = "main"
+//provider = github
+//protocol ipfs-filecoin
+
+/*
+{
+  "organizationId": "63039637346a680012aaf70b",
+  "gitUrl": "https://github.com/priyansuhub/reactapptest.git",
+  "repoName": "reactapptest",
+  "uniqueTopicId": "446602fc-5b07-11ed-9b6a-0242ac120002",
+  "configuration": {
+    "buildCommand": "yarn build",
+    "installCommand": "yarn install",
+    "workspace": "",
+    "publishDir": "build",
+    "framework": "react",
+    "nodeVersion": "V_14"
+  },
+  "env": {},
+  "protocol": "ipfs-filecoin",
+  "createDefaultWebhook": true,
+  "provider": "github",
+  "branch": "main",
+  "gitProviderPreferences": {
+    "prComments": true,
+    "commitComments": true,
+    "buildStatus": true,
+    "githubDeployment": true
+  }
+}*/
+// orgId: string, gitUrl: string, repoName: string, protocol: string, provider: string, branch: string, buildCommand: string, installCommand: string, workspace: string, publishDir: string, framework: string, nodeVersion: string
+async function testDefaultDeployment() {
+  let orgId: string = '63039637346a680012aaf70b'
+  let gitUrl: string = 'https://github.com/priyansuhub/testreactlocal.git'
+  let repoName: string = 'testreactlocal'
+  let protocol:string = "ipfs-filecoin"
+  let provider:string = 'GITHUB'
+  let branch: string = 'main'
+  let buildCommand:string = 'yarn build'
+  let installCommand:string = 'yarn install'
+  let workspace:string = ""
+  let publishDir:string = "build"
+  let framework:string = 'react'
+  let nodeVersion:string = 'V_14'
+
+  let data = await client.defaultDeployment(orgId,gitUrl,repoName,protocol,provider, branch, buildCommand,installCommand,workspace, publishDir, framework, nodeVersion)
+  console.log(data)
+}
+testDefaultDeployment()
