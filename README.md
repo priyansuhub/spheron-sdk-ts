@@ -216,6 +216,6 @@ Note: 📔
 | `method` | ` redeployDeployment (id: string): Promise<Redeploy>` |  Information about the redeployment.|
 | `method` | ` defaultDeployment (orgId: string, gitUrl: string, repoName: string, uniqueTopicId: string, protocol: string, provider: string, branch: string): Promise<DeploymentResponse>` |  Information about the start of deployment. |
 
-📹 Video Tutorial 🤩
+# 📹 Video Tutorial 🤩
 
-[Video](https://www.youtube.com/watch?v=_NyGIuu-_D8)
+![Video](https://www.youtube.com/watch?v=_NyGIuu-_D8)
