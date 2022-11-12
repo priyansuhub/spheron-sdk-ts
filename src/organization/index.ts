@@ -1,5 +1,5 @@
 import { Base } from '../base'
-import { InvitedMembers, NetworkDetails, Organization, PlatformProfile, ProviderProfile, TokenDetails, Wallet, Users, ProjectCount, Profile, DeleteResponse, Overdue, Project } from './types'
+import { InvitedMembers, NetworkDetails, Organization, PlatformProfile, ProviderProfile, TokenDetails, Wallet, Users, Profile, DeleteResponse, Overdue, Project } from './types'
 // Helper function
 function serchUserById (P: Organization, idf: string): Users | string {
   const value: Users[] = P.users
@@ -177,9 +177,25 @@ export class GetProject extends Base {
   * @param id : Organization Id
   * @returns {number} : Returns the number of projects of organization.
   */
-  async getProjectCount (id: string): Promise<number> {
-    return await this.getData(`/v1/organization/${id}/projects/count`)
-      .then((p: ProjectCount) => p.count)
+  async getProjectCountByState (id: string, state?: string): Promise<number> {
+    const url: string = `/v1/organization/${id}/projects/count`
+    if (state !== undefined) {
+      const urltwo: string = `/v1/organization/${id}/projects/count?state=${state}`
+      return await this.getData(urltwo)
+    } else {
+      return await this.getData(url)
+    }
+  }
+
+  async getProjectCountUploadType (id: string, type?: boolean): Promise<number> {
+    const url: string = `/v1/organization/${id}/projects/count`
+    if (type !== undefined) {
+      const data = type.toString()
+      const urlthree: string = `/v1/organization/${id}/projects/count?include_upload_type=${data}`
+      return await this.getData(urlthree)
+    } else {
+      return await this.getData(url)
+    }
   }
 }
 

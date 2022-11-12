@@ -60,6 +60,6 @@ export class Domain extends Base {
    @returns {VerifyDomainType}:Result of the operation.
   */
   async verifyDomainByProjectId (id: string, domainId: string): Promise<VerifyDomainType> {
-    return await this.patchDataEmpty(`/v1/project/${id}/domains/${domainId}/verify`)
+    return await this.patchData(`/v1/project/${id}/domains/${domainId}/verify`, null)
   }
 }

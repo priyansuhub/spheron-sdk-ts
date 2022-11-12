@@ -17,7 +17,8 @@ export declare class GetOrganization extends Base {
 }
 export declare class GetProject extends Base {
     getProjectOrg(id: string): Promise<Project>;
-    getProjectCount(id: string): Promise<number>;
+    getProjectCountByState(id: string, state?: string): Promise<number>;
+    getProjectCountUploadType(id: string, type?: boolean): Promise<number>;
 }
 export declare class OrganizationUpdate extends Base {
     updateOrganizationProfileParams(id: string, name: string, username: string, image: string): Promise<boolean>;

@@ -20,10 +20,14 @@ export class DeploymentEnvironment extends Base {
    @returns {addDeploymentEnvResponse}:Added deployment environment
   */
   async addDeploymentEnvironment (id: string, Name: string, Branches: string[], Protocol: string): Promise<addDeploymentEnvResponse> {
-    let obj1: DepEnv
-    obj1.name = Name
-    obj1.branches = Branches
-    obj1.protocol = Protocol
+    const obj1: DepEnv = {
+      name: Name,
+      branches: Branches,
+      protocol: Protocol
+    }
+    // obj1.name = Name
+    // obj1.branches = Branches
+    // obj1.protocol = Protocol
     return await this.postData(`/v1/project/${id}/deployment-environments`, obj1)
   }
 
@@ -35,11 +39,12 @@ export class DeploymentEnvironment extends Base {
    @param {string}Protocol: Project Id
    @returns {updateDeploymentEnvResponse}:Updated deployment environment
   */
-  async updateDeploymentEnvironmnet (id: string, envVarId: string, Name: string, Branches: string[], Protocol: string): Promise<updateDeploymentEnvResponse> {
-    let obj1: DepEnv
-    obj1.name = Name
-    obj1.branches = Branches
-    obj1.protocol = Protocol
+  async updateDeploymentEnvironment (id: string, envVarId: string, Name: string, Branches: string[], Protocol: string): Promise<updateDeploymentEnvResponse> {
+    const obj1: DepEnv = {
+      name: Name,
+      branches: Branches,
+      protocol: Protocol
+    }
     return await this.putData(`/v1/project/${id}/deployment-environments/${envVarId}`, obj1)
   }
 
@@ -60,7 +65,7 @@ export class DeploymentEnvironment extends Base {
    @returns {updateDeploymentEnvResponse}: activated deployment environment
   */
   async activateDeploymentEnvironment (id: string, envVarId: string): Promise<updateDeploymentEnvResponse> {
-    return await this.patchDataEmpty(`/v1/project/${id}/deployment-environments/${envVarId}/activate`)
+    return await this.patchData(`/v1/project/${id}/deployment-environments/${envVarId}/deactivate`, null)
   }
   /**
    * Deactivate deployment environment.
@@ -70,6 +75,6 @@ export class DeploymentEnvironment extends Base {
   */
 
   async deactivateDeploymentEnvironment (id: string, envVarId: string): Promise<updateDeploymentEnvResponse> {
-    return await this.patchDataEmpty(`/v1/project/${id}/deployment-environments/${envVarId}/deactivate`)
+    return await this.patchData(`/v1/project/${id}/deployment-environments/${envVarId}/deactivate`, null)
   }
 }

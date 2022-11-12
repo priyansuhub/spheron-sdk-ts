@@ -1,7 +1,7 @@
 
 import { Configuration } from '../organization/types'
 import { Base } from '../base'
-import { Authorize, DeploymentIdResponse, CancelDeployment, Redeploy, DeploymentRequest, DeploymentResponse } from './types'
+import { Authorize, DeploymentIdResponse, CancelDeployment, Redeploy, DeploymentRequest, DeploymentResponse, SuggestedFramework } from './types'
 import { v4 as uuidv4 } from 'uuid'
 
 export class Deployment extends Base {
@@ -30,7 +30,7 @@ export class Deployment extends Base {
   */
 
   async authorizeDeployment (id: string): Promise<Authorize> {
-    return await this.postDataEmpty(`/v1/deployment/${id}/authorize`)
+    return await this.postData(`/v1/deployment/${id}/authorize`, null)
   }
 
   /**
@@ -40,7 +40,7 @@ export class Deployment extends Base {
    @returns {Authorize}:Information about the cancelation of deployment.
   */
   async cancelDeployment (id: string): Promise<CancelDeployment> {
-    return await this.postDataEmpty(`/v1/deployment/${id}/cancel`)
+    return await this.postData(`/v1/deployment/${id}/cancel`, null)
   }
 
   /**
@@ -50,7 +50,7 @@ export class Deployment extends Base {
    @returns {Redeploy}: Information about the redeployment.
   */
   async redeployDeployment (id: string): Promise<Redeploy> {
-    return await this.postDataEmpty(`/v1/deployment/${id}/redeploy`)
+    return await this.postData(`/v1/deployment/${id}/redeploy`, null)
   }
 
   // async frameworkSuggestion (owner: string, branch: string, reqo: string, providerName: string, root: string): Promise<SuggestedFramework> {
@@ -91,5 +91,10 @@ export class Deployment extends Base {
       branch
     }
     return await this.postData('/v1/deployment/', obj)
+  }
+
+  async suggestionFramework (owner: string, branch: string, repo: string, providerName: string, root: string): Promise<SuggestedFramework> {
+    const url: string = `/v1/deployment/framework/suggestion?owner=${owner}&branch=${branch}&repo=${repo}&providerName=${providerName}&root=${root}`
+    return await this.getData(url)
   }
 }

@@ -147,7 +147,7 @@ export abstract class Base {
       )
       return data
     } catch (error) {
-      return error.message
+      return error.response.data
     }
   }
 
