@@ -65,7 +65,7 @@ export class DeploymentEnvironment extends Base {
    @returns {updateDeploymentEnvResponse}: activated deployment environment
   */
   async activateDeploymentEnvironment (id: string, envVarId: string): Promise<updateDeploymentEnvResponse> {
-    return await this.patchData(`/v1/project/${id}/deployment-environments/${envVarId}/deactivate`, null)
+    return await this.patchData(`/v1/project/${id}/deployment-environments/${envVarId}/activate`, null)
   }
   /**
    * Deactivate deployment environment.
