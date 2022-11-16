@@ -1,8 +1,26 @@
 
 import { Configuration } from '../organization/types'
 import { Base } from '../base'
-import { Authorize, DeploymentIdResponse, CancelDeployment, Redeploy, DeploymentRequest, DeploymentResponse, SuggestedFramework } from './types'
+import { Authorize, DeploymentIdResponse, CancelDeployment, Redeploy, DeploymentRequest, DeploymentResponse, SuggestedFramework, Upload } from './types'
 import { v4 as uuidv4 } from 'uuid'
+
+import FormData from 'form-data'
+import fs from 'fs'
+
+function fillFormData (dir: string, rootPath: string, formData: any): void {
+  const files: string[] = fs.readdirSync(dir)
+  for (const file of files) {
+    const path: string = dir + '/' + file
+    const filePath = rootPath + file
+    if (fs.statSync(path).isDirectory()) {
+      fillFormData(path, filePath + '/', formData)
+    } else {
+      formData.append('files', fs.createReadStream(path), {
+        filepath: filePath
+      })
+    }
+  }
+}
 
 export class Deployment extends Base {
   /**
@@ -96,5 +114,12 @@ export class Deployment extends Base {
   async suggestionFramework (owner: string, branch: string, repo: string, providerName: string, root: string): Promise<SuggestedFramework> {
     const url: string = `/v1/deployment/framework/suggestion?owner=${owner}&branch=${branch}&repo=${repo}&providerName=${providerName}&root=${root}`
     return await this.getData(url)
+  }
+
+  async upload (organizationId: string, projectName: string, protocol: string, uploadDir: string): Promise<Upload> {
+    const data = new FormData()
+    fillFormData(uploadDir, './', data)
+    const url: string = `/v1/deployment/upload?protocol=${protocol}&organization=${organizationId}&project=${projectName}`
+    return await this.postDataUpload(url, data)
   }
 }

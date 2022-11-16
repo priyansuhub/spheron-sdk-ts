@@ -96,3 +96,10 @@ export declare interface CancelDeployment {
 export declare interface SuggestedFramework {
     suggestedFramework: string;
 }
+export declare interface Upload {
+    message: string;
+    success: boolean;
+    topic: string;
+    deploymentId: string;
+    projectId: string;
+}

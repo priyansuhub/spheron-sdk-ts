@@ -132,34 +132,33 @@ export abstract class Base {
     }
   }
 
-  protected async patchDataEmpty<T>(endpoint: string): Promise<T> {
-    try {
-      const { data } = await axios.patch<T>(
-                `${this.baseUrl}${endpoint}`,
-                {
+  // protected async patchDataEmpty<T>(endpoint: string): Promise<T> {
+  //   try {
+  //     const { data } = await axios.patch<T>(
+  //               `${this.baseUrl}${endpoint}`,
+  //               {
 
-                  headers: {
-                    accept: 'application/json',
-                    charset: 'utf-8',
-                    authorization: this.apiKey
-                  }
-                }
-      )
-      return data
-    } catch (error) {
-      return error.response.data
-    }
-  }
+  //                 headers: {
+  //                   accept: 'application/json',
+  //                   charset: 'utf-8',
+  //                   authorization: this.apiKey
+  //                 }
+  //               }
+  //     )
+  //     return data
+  //   } catch (error) {
+  //     return error.response.data
+  //   }
+  // }
 
-  protected async postDataEmpty<T>(endpoint: string): Promise<T> {
+  protected async postDataUpload<T>(endpoint: string, value: any): Promise<T> {
     try {
       const { data } = await axios.post<T>(
                 `${this.baseUrl}${endpoint}`,
+                value,
                 {
 
                   headers: {
-                    accept: 'application/json',
-                    charset: 'utf-8',
                     authorization: this.apiKey
                   }
                 }

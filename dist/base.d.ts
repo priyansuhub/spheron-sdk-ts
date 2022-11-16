@@ -8,7 +8,6 @@ export declare abstract class Base {
     protected deleteDataParam<T>(endpoint: string, value: string): Promise<T>;
     protected deleteData<T>(endpoint: string): Promise<T>;
     protected getData<T>(endpoint: string): Promise<T>;
-    protected patchDataEmpty<T>(endpoint: string): Promise<T>;
-    protected postDataEmpty<T>(endpoint: string): Promise<T>;
+    protected postDataUpload<T>(endpoint: string, value: any): Promise<T>;
     protected getDataParam<T>(endpoint: string): Promise<T>;
 }
